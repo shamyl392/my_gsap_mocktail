@@ -1,6 +1,6 @@
 const navLinks = [
  {
-	id: "mocktail",
+	id: "Mocktails",
 	title: "Mocktails",
  },
  {
