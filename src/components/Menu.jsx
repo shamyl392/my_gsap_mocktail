@@ -1,11 +1,26 @@
 'use client';
 import React, { useRef, useState } from 'react'
 import { allMocktails } from '../../constants'
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 
 const Menu = () => {
 const contentRef = useRef();
 
 const [currentIndex, setCurrentIndex] = useState(0);
+
+useGSAP(() => {
+    gsap.fromTo('#title', {opacity: 0}, { opacity: 1, duration: 1 });
+    gsap.fromTo('.cocktail img', { opacity: 0, xPercent: -100 },
+        { opacity: 1, xPercent: 0, duration: 1, ease: 'power1.inOut' })
+    gsap.fromTo('.details h2', { opacity: 0, yPercent: 100 },{ opacity: 100, yPercent: 0, duration: 1, ease: 'power1.inOut' })
+    gsap.fromTo('.details p', { opacity: 0, yPercent: 100 },{ opacity: 100, yPercent: 0, duration: 1, ease: 'power1.inOut' })
+}, [currentIndex])
+
+
+const getMocktailAt = (indexOffset) => {
+    return allMocktails[(currentIndex + indexOffset + totalMocktails) % totalMocktails];
+} 
 
 const totalMocktails = allMocktails.length;
 
@@ -14,13 +29,13 @@ const goToSlide = (index) => {
     setCurrentIndex(newIndex);
 }
 
-const getMocktailAt = (indexOffset) => {
-    return allMocktails[(currentIndex + indexOffset + totalMocktails) % totalMocktails];
-}
+
 
 const currentMocktail = getMocktailAt(0)
 const prevMocktail = getMocktailAt(-1);
 const nextMocktail = getMocktailAt(1);
+
+
   return (
     <section id="menu" aria-labelledby='menu-heading'>
         <img src="/images/slider-left-leaf.png" alt = "left leaf" id="m-left-leaf" />

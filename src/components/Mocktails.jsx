@@ -52,7 +52,7 @@ const Mocktails = () => {
                           <p>{country} | {detail}</p>
                         </h3>
                     </div>
-                    <span>- {price}</span>
+                    <span> {price}</span>
                 </li>
               ))}
             </ul>
@@ -70,7 +70,7 @@ const Mocktails = () => {
                           <p>{country} | {detail}</p>
                         </h3>
                     </div>
-                    <span>- {price}</span>
+                    <span> {price}</span>
                 </li>
               ))}
             </ul>
